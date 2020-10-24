@@ -42,7 +42,7 @@ public class Parking {
 
     public Slot park(final Vehicle vehicle, final Integer slotNumber) {
         final Slot slot = getSlot(slotNumber);
-        if (slot.isSlotFree().getState()) {
+        if (!slot.isSlotFree().getState()) {
             throw new SlotAlreadyOccupiedException();
         }
         slot.assignCar(vehicle);

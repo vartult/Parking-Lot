@@ -17,6 +17,7 @@ public class SlotNumberFromVehicleNumberQuery extends QueryBaseClass {
     public void computeQuery(Command command) {
         final List<Slot> occupiedSlots = parkingLotService.getOccupiedSlots();
         final String regNumberToFind = command.getParams().get(0);
+
         final Optional<Slot> foundSlot = occupiedSlots.stream()
                 .filter(slot -> slot.getParkedCar().getCarNumber().equals(regNumberToFind))
                 .findFirst();

@@ -11,11 +11,11 @@ import java.util.stream.Collectors;
 public class Command {
 
   private static final String SPACE = " ";
-  private QueryEnum queryName;
+  private QueryEnum queryEnum;
   private List<String> params;
 
   public QueryEnum getQueryName() {
-    return queryName;
+    return queryEnum;
   }
 
   public List<String> getParams() {
@@ -31,7 +31,7 @@ public class Command {
       throw new RuntimeException();
     }
 
-    queryName = QueryEnum.valueOf(tokensList.get(0).toLowerCase());
+    queryEnum = QueryEnum.getQueryCommand(tokensList.get(0).toLowerCase());
     tokensList.remove(0);
     params = tokensList;
   }

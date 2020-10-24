@@ -14,7 +14,7 @@ public class ParkVehicleQuery extends QueryBaseClass {
 
     @Override
     public void computeQuery(Command command) {
-        final Vehicle vehicle = new Vehicle(command.getParams().get(0), command.getParams().get(2));
+        final Vehicle vehicle = new Vehicle(command.getParams().get(2),command.getParams().get(0));
         try {
             final Integer slot = parkingLotService.park(vehicle);
             outputPrinter.printWithNewLine(slot.toString());

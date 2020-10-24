@@ -6,10 +6,7 @@ import com.cellfishpool.services.ParkingLotService;
 import com.cellfishpool.utils.baseclass.QueryBaseClass;
 import com.cellfishpool.utils.constants.Constants;
 import com.cellfishpool.utils.output.OutputPrinter;
-
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class SlotNumberFromAgeQuery extends QueryBaseClass {
     public SlotNumberFromAgeQuery(final ParkingLotService parkingLotService, final OutputPrinter outputPrinter){
@@ -20,13 +17,14 @@ public class SlotNumberFromAgeQuery extends QueryBaseClass {
     public void computeQuery(Command command) {
         final List<Slot> occupiedSlots = parkingLotService.getOccupiedSlots();
         final String ageToFind = command.getParams().get(0);
-        final List<Slot> foundSlot = occupiedSlots.stream().filter(slot -> slot.getParkedCar().getDriverAge().equals(ageToFind)).collect(Collectors.toList());
         StringBuilder result = new StringBuilder();
-        for (Slot i: foundSlot) {
-            result.append(i.getSlotNumber());
-            result.append(Constants.COMMA);
+        for (Slot it: occupiedSlots) {
+            if(it.getParkedCar().getDriverAge().equals(ageToFind)){
+                result.append(it.getSlotNumber());
+                result.append(Constants.COMMA);
+            }
         }
-        outputPrinter.printWithNewLine(result.toString());
+        outputPrinter.printWithNewLine(result.substring(0,result.length()-1));
 
     }
 
@@ -35,5 +33,3 @@ public class SlotNumberFromAgeQuery extends QueryBaseClass {
         return command.getParams().size() == 1;
     }
 }
-
-//SLOT TO FIND 18

@@ -12,25 +12,16 @@ public class NaturalOrderingParkingStrategy implements ParkingStrategy {
     this.slotTreeSet = new TreeSet<>();
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public void addSlot(Integer slotNumber) {
     this.slotTreeSet.add(slotNumber);
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public void removeSlot(Integer slotNumber) {
     this.slotTreeSet.remove(slotNumber);
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public Integer getNextSlot() {
     if (slotTreeSet.isEmpty()) {

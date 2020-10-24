@@ -16,12 +16,12 @@ public class VehicleNumberFromAgeQuery extends QueryBaseClass {
 
     @Override
     public void computeQuery(Command command) {
-        final List<Slot> slotsForColor = parkingLotService.getSlotsForColor(command.getParams().get(0));
-        if (slotsForColor.isEmpty()) {
+        final List<Slot> vehicleNumberForAge = parkingLotService.getVehicleForAge(command.getParams().get(0));
+        if (vehicleNumberForAge.isEmpty()) {
             outputPrinter.notFound();
         } else {
             final String result =
-                    slotsForColor.stream()
+                    vehicleNumberForAge.stream()
                             .map(slot -> slot.getParkedCar().getCarNumber())
                             .collect(Collectors.joining(", "));
             outputPrinter.printWithNewLine(result);

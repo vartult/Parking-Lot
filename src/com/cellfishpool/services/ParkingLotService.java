@@ -23,7 +23,7 @@ public class ParkingLotService {
         if (this.parkingLot != null) {
             throw new ParkingLotException("Parking lot already exists.");
         }
-        this.parkingLot = parkingLot;
+        this.parkingLot = parking;
         this.parkingStrategy = parkingStrategy;
         for (int i = 1; i <= parkingLot.getCapacity(); i++) {
             parkingStrategy.addSlot(i);
@@ -61,7 +61,7 @@ public class ParkingLotService {
         for (int i = 1; i <= parkingLot.getCapacity(); i++) {
             if (allSlots.containsKey(i)) {
                 final Slot slot = allSlots.get(i);
-                if (slot.isSlotFree().getState()) {
+                if (!slot.isSlotFree().getState()) {
                     occupiedSlotsList.add(slot);
                 }
             }
@@ -76,7 +76,7 @@ public class ParkingLotService {
         }
     }
 
-    public List<Slot> getSlotsForColor(final String age) {
+    public List<Slot> getVehicleForAge(final String age) {
         final List<Slot> occupiedSlots = getOccupiedSlots();
         return occupiedSlots.stream()
                 .filter(slot -> slot.getParkedCar().getDriverAge().equals(age))
