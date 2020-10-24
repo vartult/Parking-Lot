@@ -1,21 +1,34 @@
 package com.cellfishpool.queries;
 
 import com.cellfishpool.models.Command;
+import com.cellfishpool.models.Slot;
 import com.cellfishpool.services.ParkingLotService;
 import com.cellfishpool.utils.baseclass.QueryBaseClass;
 import com.cellfishpool.utils.output.OutputPrinter;
 
+import java.util.List;
+import java.util.Optional;
+
 public class SlotNumberFromVehicleNumberQuery extends QueryBaseClass {
-    SlotNumberFromVehicleNumberQuery(final ParkingLotService parkingLotService, final OutputPrinter outputPrinter){
+    public SlotNumberFromVehicleNumberQuery(final ParkingLotService parkingLotService, final OutputPrinter outputPrinter){
         super(parkingLotService, outputPrinter);
     }
     @Override
     public void computeQuery(Command command) {
-
+        final List<Slot> occupiedSlots = parkingLotService.getOccupiedSlots();
+        final String regNumberToFind = command.getParams().get(0);
+        final Optional<Slot> foundSlot = occupiedSlots.stream()
+                .filter(slot -> slot.getParkedCar().getCarNumber().equals(regNumberToFind))
+                .findFirst();
+        if (foundSlot.isPresent()) {
+            outputPrinter.printWithNewLine(foundSlot.get().getSlotNumber().toString());
+        } else {
+            outputPrinter.notFound();
+        }
     }
 
     @Override
     public boolean checkValidQuery(Command command) {
-        return false;
+        return command.getParams().size() == 1;
     }
 }

@@ -1,17 +1,21 @@
 package com.cellfishpool.models;
 
+import com.cellfishpool.utils.enums.QueryEnum;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
+/**
+* Data & utils methods for getting query and
+* */
 public class Command {
 
   private static final String SPACE = " ";
-  private String commandName;
+  private QueryEnum queryName;
   private List<String> params;
 
-  public String getCommandName() {
-    return commandName;
+  public QueryEnum getQueryName() {
+    return queryName;
   }
 
   public List<String> getParams() {
@@ -27,7 +31,7 @@ public class Command {
       throw new RuntimeException();
     }
 
-    commandName = tokensList.get(0).toLowerCase();
+    queryName = QueryEnum.valueOf(tokensList.get(0).toLowerCase());
     tokensList.remove(0);
     params = tokensList;
   }
