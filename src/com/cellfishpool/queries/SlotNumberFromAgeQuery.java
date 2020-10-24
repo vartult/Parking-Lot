@@ -6,6 +6,8 @@ import com.cellfishpool.services.ParkingLotService;
 import com.cellfishpool.utils.baseclass.QueryBaseClass;
 import com.cellfishpool.utils.constants.Constants;
 import com.cellfishpool.utils.output.OutputPrinter;
+import com.cellfishpool.utils.validator.IntegerValidator;
+
 import java.util.List;
 
 public class SlotNumberFromAgeQuery extends QueryBaseClass {
@@ -24,12 +26,14 @@ public class SlotNumberFromAgeQuery extends QueryBaseClass {
                 result.append(Constants.COMMA);
             }
         }
-        outputPrinter.printWithNewLine(result.substring(0,result.length()-1));
-
+        if(result.length()>0)
+            outputPrinter.printWithNewLine(result.substring(0,result.length()-1));
+        else
+            outputPrinter.notFound();
     }
 
     @Override
     public boolean checkValidQuery(Command command) {
-        return command.getParams().size() == 1;
+        return (command.getParams().size() == 1 && IntegerValidator.isInteger(command.getParams().get(0)));
     }
 }

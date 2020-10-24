@@ -5,6 +5,7 @@ import com.cellfishpool.models.Slot;
 import com.cellfishpool.services.ParkingLotService;
 import com.cellfishpool.utils.baseclass.QueryBaseClass;
 import com.cellfishpool.utils.output.OutputPrinter;
+import com.cellfishpool.utils.validator.IntegerValidator;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,12 +18,15 @@ public class SlotNumberFromVehicleNumberQuery extends QueryBaseClass {
     public void computeQuery(Command command) {
         final List<Slot> occupiedSlots = parkingLotService.getOccupiedSlots();
         final String regNumberToFind = command.getParams().get(0);
-
-        final Optional<Slot> foundSlot = occupiedSlots.stream()
-                .filter(slot -> slot.getParkedCar().getCarNumber().equals(regNumberToFind))
-                .findFirst();
-        if (foundSlot.isPresent()) {
-            outputPrinter.printWithNewLine(foundSlot.get().getSlotNumber().toString());
+        String result = "";
+        for (Slot it: occupiedSlots) {
+            if(it.getParkedCar().getCarNumber().equals(regNumberToFind)){
+                result += it.getSlotNumber();
+                break;
+            }
+        }
+        if (!result.equals("")) {
+            outputPrinter.printWithNewLine(result);
         } else {
             outputPrinter.notFound();
         }
@@ -30,6 +34,6 @@ public class SlotNumberFromVehicleNumberQuery extends QueryBaseClass {
 
     @Override
     public boolean checkValidQuery(Command command) {
-        return command.getParams().size() == 1;
+        return (command.getParams().size() == 1);
     }
 }

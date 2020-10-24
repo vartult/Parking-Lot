@@ -5,7 +5,9 @@ import com.cellfishpool.models.Command;
 import com.cellfishpool.models.Vehicle;
 import com.cellfishpool.services.ParkingLotService;
 import com.cellfishpool.utils.baseclass.QueryBaseClass;
+import com.cellfishpool.utils.constants.SubQuery;
 import com.cellfishpool.utils.output.OutputPrinter;
+import com.cellfishpool.utils.validator.IntegerValidator;
 
 public class ParkVehicleQuery extends QueryBaseClass {
     public ParkVehicleQuery(final ParkingLotService parkingLotService, final OutputPrinter outputPrinter){
@@ -23,9 +25,8 @@ public class ParkVehicleQuery extends QueryBaseClass {
         }
     }
 
-    //TODO : 2nd parameter is DRIVER_AGE
     @Override
     public boolean checkValidQuery(Command command) {
-        return command.getParams().size() == 3;
+        return (command.getParams().size() == 3 && command.getParams().get(1).toLowerCase().equals(SubQuery.DRIVER_AGE) && IntegerValidator.isInteger(command.getParams().get(2)));
     }
 }

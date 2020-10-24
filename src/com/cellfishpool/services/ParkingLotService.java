@@ -5,16 +5,11 @@ import com.cellfishpool.models.Parking;
 import com.cellfishpool.models.Slot;
 import com.cellfishpool.models.Vehicle;
 import com.cellfishpool.utils.strategy.ParkingStrategy;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-/**
- * Service for enable the functioning of a parking lot. This will have all the business logic of
- * how the parking service will operate.
- */
 public class ParkingLotService {
     private Parking parkingLot;
     private ParkingStrategy parkingStrategy;
@@ -38,21 +33,12 @@ public class ParkingLotService {
         return nextFreeSlot;
     }
 
-    /**
-     * Unparks a car from a slot. Freed slot number is given back to the parking strategy so that it
-     * becomes available for future parkings.
-     *
-     * @param slotNumber Slot number to be freed.
-     */
     public void makeSlotFree(final Integer slotNumber) {
         validateParkingLotExists();
         parkingLot.makeSlotFree(slotNumber);
         parkingStrategy.addSlot(slotNumber);
     }
 
-    /**
-     * Gets the list of all the slots which are occupied.
-     */
     public List<Slot> getOccupiedSlots() {
         validateParkingLotExists();
         final List<Slot> occupiedSlotsList = new ArrayList<>();

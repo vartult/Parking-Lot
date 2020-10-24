@@ -1,13 +1,12 @@
 package com.cellfishpool.queries;
 
-import com.cellfishpool.exception.NoFreeSlotAvailableException;
 import com.cellfishpool.models.Command;
 import com.cellfishpool.models.Parking;
-import com.cellfishpool.models.Vehicle;
 import com.cellfishpool.services.ParkingLotService;
 import com.cellfishpool.utils.baseclass.QueryBaseClass;
 import com.cellfishpool.utils.output.OutputPrinter;
 import com.cellfishpool.utils.strategy.NaturalOrderingParkingStrategy;
+import com.cellfishpool.utils.validator.IntegerValidator;
 
 public class CreateParkingLotQuery extends QueryBaseClass {
 
@@ -26,6 +25,6 @@ public class CreateParkingLotQuery extends QueryBaseClass {
 
     @Override
     public boolean checkValidQuery(Command command) {
-        return command.getParams().size() == 1;
+        return (command.getParams().size() == 1 && IntegerValidator.isInteger(command.getParams().get(0)));
     }
 }

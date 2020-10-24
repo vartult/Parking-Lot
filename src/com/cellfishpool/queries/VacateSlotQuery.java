@@ -4,6 +4,7 @@ import com.cellfishpool.models.Command;
 import com.cellfishpool.services.ParkingLotService;
 import com.cellfishpool.utils.baseclass.QueryBaseClass;
 import com.cellfishpool.utils.output.OutputPrinter;
+import com.cellfishpool.utils.validator.IntegerValidator;
 
 public class VacateSlotQuery extends QueryBaseClass {
     public VacateSlotQuery(final ParkingLotService parkingLotService, final OutputPrinter outputPrinter){
@@ -19,6 +20,6 @@ public class VacateSlotQuery extends QueryBaseClass {
 
     @Override
     public boolean checkValidQuery(Command command) {
-        return command.getParams().size() == 1;
+        return (command.getParams().size() == 1 && IntegerValidator.isInteger(command.getParams().get(0)));
     }
 }
