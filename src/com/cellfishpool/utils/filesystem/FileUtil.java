@@ -46,7 +46,7 @@ public class FileUtil {
     if (queryBaseClass.checkValidQuery(command)) {
       queryBaseClass.computeQuery(command);
     } else {
-      throw new RuntimeException();
+      throw new RuntimeException("Oops! Seems like you messed up with the query");
     }
   }
 }

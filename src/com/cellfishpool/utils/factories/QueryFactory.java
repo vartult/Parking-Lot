@@ -1,5 +1,6 @@
 package com.cellfishpool.utils.factories;
 
+import com.cellfishpool.exception.InvalidCommandException;
 import com.cellfishpool.models.Command;
 import com.cellfishpool.queries.*;
 import com.cellfishpool.services.ParkingLotService;
@@ -29,7 +30,7 @@ public class QueryFactory {
     public QueryBaseClass getCommandExecutor(final Command command) {
         final QueryBaseClass queryBaseClass = commands.get(command.getQueryName());
         if (queryBaseClass == null) {
-            throw new RuntimeException();
+            throw new InvalidCommandException();
         }
         return queryBaseClass;
     }

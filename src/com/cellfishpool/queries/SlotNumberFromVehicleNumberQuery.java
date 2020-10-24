@@ -27,7 +27,7 @@ public class SlotNumberFromVehicleNumberQuery extends QueryBaseClass {
             }
         }
         if (!result.equals("")) {
-            outputPrinter.printWithNewLine(result);
+            outputPrinter.printWithNewLine("Car with vehicle registration number \""+regNumberToFind+"\" is parked at slot number " + result);
         } else {
             outputPrinter.notFound();
         }
