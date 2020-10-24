@@ -11,7 +11,7 @@ Visit https://www.jetbrains.com/idea/download/ for downloading the IDE. You can 
 ### Clone the project to local machine
 1. git clone https://github.com/vartult/Parking-Lot.git
 2. git pull
-3. git checkout implemenation
+3. git checkout implemenation (Code is in Implementation branch)
 
 ### Runing the project
 
