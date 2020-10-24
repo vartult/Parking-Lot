@@ -52,7 +52,6 @@ public class ParkingLotService {
                 }
             }
         }
-
         return occupiedSlotsList;
     }
 

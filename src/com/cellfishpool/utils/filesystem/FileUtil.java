@@ -2,24 +2,29 @@ package com.cellfishpool.utils.filesystem;
 
 import com.cellfishpool.models.Command;
 import com.cellfishpool.utils.baseclass.QueryBaseClass;
+import com.cellfishpool.utils.constants.Constants;
 import com.cellfishpool.utils.factories.QueryFactory;
 import com.cellfishpool.utils.output.OutputPrinter;
 
 import java.io.*;
 
-public class FileMode  {
+/*
+* Utility class for getting file from file system & Passing it for parameter processing
+* */
+
+public class FileUtil {
   private String fileName;
   private OutputPrinter outputPrinter;
   private QueryFactory queryFactory;
 
-  public FileMode(QueryFactory queryFactory, OutputPrinter outputPrinter, String fileName){
+  public FileUtil(QueryFactory queryFactory, OutputPrinter outputPrinter, String fileName){
     this.fileName = fileName;
     this.outputPrinter = outputPrinter;
     this.queryFactory = queryFactory;
   }
 
   public void process() throws IOException {
-    final File file = new File("/Users/vartultripathi/Desktop/SquadStack-Parking-Lot/bin/input.txt");
+    final File file = new File(Constants.INPUT_FILE);
     final BufferedReader reader;
     try {
       reader = new BufferedReader(new FileReader(file));

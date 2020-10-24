@@ -1,5 +1,6 @@
 package com.cellfishpool.utils.enums;
 
+
 public enum  QueryEnum {
     CREATE_PARKING_LOT("create_parking_lot"),
     PARK_VEHICLE("park"),
@@ -10,7 +11,6 @@ public enum  QueryEnum {
 
     private String command;
     public static QueryEnum getQueryCommand(String queryName){
-
         for (QueryEnum i: QueryEnum.values()) {
             if(i.command.equals(queryName))
                 return i;

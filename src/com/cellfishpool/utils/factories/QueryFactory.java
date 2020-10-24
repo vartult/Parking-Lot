@@ -6,12 +6,13 @@ import com.cellfishpool.services.ParkingLotService;
 import com.cellfishpool.utils.baseclass.QueryBaseClass;
 import com.cellfishpool.utils.enums.QueryEnum;
 import com.cellfishpool.utils.output.OutputPrinter;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import static com.cellfishpool.utils.enums.QueryEnum.*;
 
+/*
+* Query Factory is used to directly inject the params to the required Command that is mapped from here.
+* */
 public class QueryFactory {
     private Map<QueryEnum, QueryBaseClass> commands = new HashMap<>();
 

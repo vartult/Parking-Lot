@@ -7,9 +7,7 @@ import com.cellfishpool.utils.baseclass.QueryBaseClass;
 import com.cellfishpool.utils.constants.Constants;
 import com.cellfishpool.utils.output.OutputPrinter;
 import com.cellfishpool.utils.validator.IntegerValidator;
-
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class VehicleNumberFromAgeQuery extends QueryBaseClass {
     public VehicleNumberFromAgeQuery(final ParkingLotService parkingLotService, final OutputPrinter outputPrinter){
@@ -34,6 +32,11 @@ public class VehicleNumberFromAgeQuery extends QueryBaseClass {
         }
     }
 
+    /*
+     * for this command-
+     * 1. 1 param should be present
+     * 2. That param should be an int
+     * */
     @Override
     public boolean checkValidQuery(Command command) {
         return (command.getParams().size() == 1 && IntegerValidator.isInteger(command.getParams().get(0)));

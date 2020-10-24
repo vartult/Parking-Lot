@@ -18,6 +18,12 @@ public class VacateSlotQuery extends QueryBaseClass {
         outputPrinter.printWithNewLine("Slot number " + slotNum + " is free");
     }
 
+    /*
+     * for this command-
+     * 1. 1 param should be present
+     * 2. That param should be an int
+     * */
+
     @Override
     public boolean checkValidQuery(Command command) {
         return (command.getParams().size() == 1 && IntegerValidator.isInteger(command.getParams().get(0)));
