@@ -3,6 +3,8 @@
 * Language- java
 * JDK 1.8
 * IntelliJ IDEA (as IDE for running the program)
+
+This project is build to showcase design pattern, LLD, scalable system for famous parking lot problem. More testcases and features can be added to it based on the requirement. 
  
 ### Downloading the IDE
 
