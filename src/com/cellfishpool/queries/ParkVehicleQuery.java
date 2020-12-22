@@ -20,7 +20,7 @@ public class ParkVehicleQuery extends QueryBaseClass {
         final Vehicle vehicle = new Vehicle(command.getParams().get(2),command.getParams().get(0));
         try {
             final Integer slot = parkingLotService.park(vehicle);
-            outputPrinter.printWithNewLine(slot.toString());
+            outputPrinter.printWithNewLine("Car with vehicle registration number \""+command.getParams().get(0)+"\" has been parked at slot number " + slot);
         } catch (NoFreeSlotAvailableException exception) {
             outputPrinter.parkingLotFull();
         }

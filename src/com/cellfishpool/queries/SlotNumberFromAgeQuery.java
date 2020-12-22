@@ -7,7 +7,6 @@ import com.cellfishpool.utils.baseclass.QueryBaseClass;
 import com.cellfishpool.utils.constants.Constants;
 import com.cellfishpool.utils.output.OutputPrinter;
 import com.cellfishpool.utils.validator.IntegerValidator;
-
 import java.util.List;
 
 public class SlotNumberFromAgeQuery extends QueryBaseClass {

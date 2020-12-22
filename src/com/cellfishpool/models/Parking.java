@@ -28,7 +28,7 @@ public class Parking {
         return slots;
     }
 
-    private Slot getSlot(final Integer slotNumber) {
+    public Slot getSlot(final Integer slotNumber) {
         if (slotNumber > getCapacity() || slotNumber <= 0) {
             throw new InvalidSlotException();
         }
